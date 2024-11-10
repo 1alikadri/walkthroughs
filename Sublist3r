@@ -1,0 +1,72 @@
+Sublist3r Walkthrough
+
+1. Introduction to Sublist3r
+Description: Sublist3r is a Python-based tool designed to enumerate subdomains of websites leveraging major search engines like Google, Bing, Yahoo, and others. It comes in handy for a penetration tester
+or security researcher to find the subdomains for a given domain, which helps them in the reconnaissance and attack surface mapping of a target.
+Use Cases: Sublist3r is typically used in the reconnaissance stage of a penetration test for the enumeration of subdomains of a target, which could possibly reveal hidden or less secured web applications.
+
+2. Prerequisites
+System Requirements: Sublist3r is a light Python-based tool and does not have heavy resources.
+Dependencies: Sublist3r needs Python 2.7 with some additional Python libraries. Kali Linux usually comes with Python installed but you might have to install particular libraries.
+
+3. Installation Steps
+Step 1: Refresh Package List
+bash
+Copy code
+sudo apt update
+
+Step 2: Clone the Repository Sublist3r is not installed by default on Kali, so we will have to clone it from GitHub.
+bash
+Copy code
+git clone https://github.com/aboul3la/Sublist3r.git
+
+Step 3: Switch to the Sublist3r Directory
+bash
+Copy code
+cd Sublist3r
+
+Step 4: Install Dependencies Sublist3r requires several Python packages, such as requests, argparse, and dnspython.
+bash
+Copy code
+sudo apt install python-pip
+pip install -r requirements.txt
+
+4. Basic Configuration
+Usage of Sublist3r: By default, after installation, Sublist3r is ready to use. Nothing needs to be configured, but make sure your internet connection is not faulty because this tool will query some online services.
+
+5. Basic Usage Overview
+Basic Usage Command: The following command syntax can be used to enumerate subdomains for a domain.
+bash
+Copy code
+python sublist3r.py -d example.com
+
+Options:
+-d: The domain to be enumerated.
+-b: Brute force subdomains; this option is optional and will go deeper with regard to finding subdomains.
+-p: The ports to scan for each subdomain.
+-v: Enables you to run your command in verbose mode through the display of progress in real time.
+
+Example Command:
+bash
+Copy code
+python sublist3r.py -d example.com -b -p 80,443 -v
+
+6. Advanced Features
+Brute-forcing: If you'd like Sublist3r to try brute-forcing subdomains, use the -b flag. This will take a lot longer but will reveal additional hidden subdomains.
+Port Scanning: Using the -p option, you can scan specific ports, such as port 80 and 443, for each subdomain identified.
+Save Output to a File: Add > filename.txt to the command and pipe output into a file.
+
+7. Troubleshooting
+Missing Dependencies: If you get errors with missing Python packages, you can try running:
+bash
+Copy code
+pip install requests argparse dnspython
+Python Version Errors: If Kali Linux defaults to Python 3, run Sublist3r using python2 instead of python.
+
+8. Real-World Example
+Scenario: Imagine you are reconning the domain example.com. You'd want to enumerate its subdomains to know whether any of them have open HTTP or HTTPS ports.
+Command:
+bash
+Copy code
+python sublist3r.py -d example.com -b -p 80,443 -v > example_subdomains.txt
+Explanation: This will enumerate subdomains for example.com, brute-force further subdomains, scan port 80 and 443 for each found subdomain and pipe the results to example_subdomains.txt.
