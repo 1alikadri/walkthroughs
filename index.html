@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sublist3r Walkthrough</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        p, li {
+            line-height: 1.6;
+        }
+        code {
+            background-color: #f0f0f0;
+            color: #c7254e;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        .code-block {
+            margin: 1em 0;
+            font-size: 0.95em;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .highlight {
+            color: #3498db;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sublist3r Walkthrough</h1>
+
+        <h2>1. Introduction to Sublist3r</h2>
+        <p><span class="highlight">Description:</span> Sublist3r is a Python-based tool designed to enumerate subdomains of websites by leveraging major search engines like Google, Bing, and Yahoo. It helps penetration testers or security researchers during the reconnaissance stage by revealing subdomains, often identifying hidden or less secure web applications.</p>
+        <p><span class="highlight">Use Cases:</span> Sublist3r is typically used in the reconnaissance phase of a penetration test to map out the subdomains of a target.</p>
+
+        <h2>2. Prerequisites</h2>
+        <p><span class="highlight">System Requirements:</span> Sublist3r is a lightweight tool that only requires basic system resources.</p>
+        <p><span class="highlight">Dependencies:</span> Requires Python 2.7 and additional Python libraries. Kali Linux usually has Python installed, but certain libraries may need to be installed.</p>
+
+        <h2>3. Installation Steps</h2>
+        <ol>
+            <li><span class="highlight">Step 1:</span> Refresh Package List
+                <div class="code-block"><pre>sudo apt update</pre></div>
+            </li>
+            <li><span class="highlight">Step 2:</span> Clone the Repository
+                <div class="code-block"><pre>git clone https://github.com/aboul3la/Sublist3r.git</pre></div>
+            </li>
+            <li><span class="highlight">Step 3:</span> Switch to the Sublist3r Directory
+                <div class="code-block"><pre>cd Sublist3r</pre></div>
+            </li>
+            <li><span class="highlight">Step 4:</span> Install Dependencies
+                <div class="code-block"><pre>sudo apt install python-pip
+pip install -r requirements.txt</pre></div>
+            </li>
+        </ol>
+
+        <h2>4. Basic Configuration</h2>
+        <p>After installation, Sublist3r is ready to use. Ensure you have a stable internet connection, as the tool queries online services.</p>
+
+        <h2>5. Basic Usage Overview</h2>
+        <p><span class="highlight">Basic Usage Command:</span> To enumerate subdomains, use:</p>
+        <div class="code-block"><pre>python sublist3r.py -d example.com</pre></div>
+
+        <p><span class="highlight">Options:</span></p>
+        <ul>
+            <li><code>-d</code>: The domain to be enumerated.</li>
+            <li><code>-b</code>: Brute force subdomains for deeper searches.</li>
+            <li><code>-p</code>: Scan specified ports for each subdomain.</li>
+            <li><code>-v</code>: Verbose mode to display progress in real-time.</li>
+        </ul>
+        <p><span class="highlight">Example Command:</span></p>
+        <div class="code-block"><pre>python sublist3r.py -d example.com -b -p 80,443 -v</pre></div>
+
+        <h2>6. Advanced Features</h2>
+        <p><span class="highlight">Brute-forcing:</span> Use <code>-b</code> flag to enable brute-forcing. This increases runtime but reveals additional subdomains.</p>
+        <p><span class="highlight">Port Scanning:</span> Use the <code>-p</code> option to scan specific ports (e.g., 80, 443).</p>
+        <p><span class="highlight">Save Output to a File:</span> Add <code>&gt; filename.txt</code> to save results to a file.</p>
+
+        <h2>7. Troubleshooting</h2>
+        <p><span class="highlight">Missing Dependencies:</span> Install missing Python packages:</p>
+        <div class="code-block"><pre>pip install requests argparse dnspython</pre></div>
+        <p><span class="highlight">Python Version Errors:</span> If Kali defaults to Python 3, run Sublist3r using <code>python2</code> instead of <code>python</code>.</p>
+
+        <h2>8. Real-World Example</h2>
+        <p><span class="highlight">Scenario:</span> Reconning the domain <code>example.com</code> to enumerate its subdomains and check for open HTTP/HTTPS ports.</p>
+        <p><span class="highlight">Command:</span></p>
+        <div class="code-block"><pre>python sublist3r.py -d example.com -b -p 80,443 -v > example_subdomains.txt</pre></div>
+        <p>This command will enumerate subdomains for <code>example.com</code>, brute-force for additional subdomains, scan ports 80 and 443, and save results to <code>example_subdomains.txt</code>.</p>
+    </div>
+</body>
+</html>
